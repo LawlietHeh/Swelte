@@ -4,7 +4,8 @@
 	import Counter from "./Counter.svelte";
 	import produkt from "./Produkt.svelte";
 	import Produkt from "./Produkt.svelte";
-
+	import Kartazakupowa from "./kartazakupowa.svelte";
+	import Koncowka from "./koncowka.svelte";
 	let { children } = $props();
 </script>
 
@@ -13,15 +14,25 @@
 	<main>
 		{@render children()}
 		<!-- <Counter startingamount={3} /> -->
+		<!-- 
+		<Kartazakupowa />
+		<hr />
+		<Produkt idProduktu={1} />
+		<hr />
+		<Produkt idProduktu={2} />
+		<hr />
 		<Produkt />
-	</main>
+		<hr />
+		<Produkt />
+		<Koncowka /> -->
 
-	<!-- <footer>
+		<!-- <footer>
 		<p>
 			visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to
 			learn about SvelteKit
 		</p>
 	</footer> -->
+	</main>
 </div>
 
 <style>
@@ -62,5 +73,8 @@
 		footer {
 			padding: 12px 0;
 		}
+	}
+	hr {
+		width: 80.6%;
 	}
 </style>
