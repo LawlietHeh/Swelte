@@ -3,6 +3,7 @@
     export let title: string;
     export let price: number;
     export let opis: string;
+    export let cena: number;
 
     let ilosc = 1;
 
@@ -14,7 +15,8 @@
         if (ilosc > 1) ilosc -= 1;
     }
 
-    $: total = (price * ilosc).toFixed(2);
+    $: total = (cena * ilosc).toFixed(2) + "$";
+    $: ilosc = +ilosc || 1;
 </script>
 
 <div>
@@ -32,7 +34,9 @@
                     <input type="number" min="1" bind:value={ilosc} /><br />
                     <button onclick={decrement}>-</button></td
                 >
-                <td><p></p></td></tr
+                <td
+                    ><input id="total" min="1" bind:value={total} readonly />
+                </td></tr
             >
         </tbody>
     </table>
@@ -45,6 +49,12 @@
         height: 200px;
         text-align: center;
         border-radius: 15px;
+        transition: 1000ms;
+    }
+    table:hover {
+        background-color: rgba(255, 255, 255, 0.548);
+        text-align: center;
+        border-radius: 15px;
     }
     input {
         width: 45%;
@@ -54,9 +64,14 @@
     td {
         min-width: 200px;
         height: 100px;
+        padding: 20px;
     }
     img {
         height: auto;
+        width: 190px;
+        transition: 1000ms;
+    }
+    img:hover {
         width: 200px;
     }
     button {
@@ -89,5 +104,17 @@
     #opis {
         font-size: 10px;
         margin: 30px;
+        transition: 500ms;
+    }
+    #opis:hover {
+        font-size: 15px;
+        margin: 30px;
+    }
+    #total {
+        background-color: rgba(218, 132, 255, 0.219);
+        border-style: none;
+        border-radius: 15px;
+        width: 150px;
+        text-align: center;
     }
 </style>

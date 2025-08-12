@@ -1,6 +1,7 @@
 <script lang="ts">
     import Koncowka from "./koncowka.svelte";
     import Produkt from "./Produkt.svelte";
+    import Podsumowanie from "./Podsumowanie.svelte";
     let products = [];
 
     async function getData() {
@@ -22,22 +23,22 @@
             </tr><tr></tr>
         </tbody>
     </table>
-    <hr />
+    <br />
     {#each products as product}
         <Produkt
             link={product.image}
             opis={product.description}
             title={product.title}
             price="{product.price}$"
-        />
-        <hr />
+            cena={product.price}
+        /><br />
     {/each}
-    <hr />
 </div>
+<Podsumowanie />
 
 <style>
     table {
-        background-color: rgba(255, 255, 255, 0.336);
+        background-color: rgba(255, 255, 255, 0.781);
         width: 80%;
         height: 100px;
         text-align: center;
