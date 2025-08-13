@@ -1,43 +1,54 @@
 <script lang="ts">
-    export let link: string;
-    export let title: string;
-    export let price: number;
-    export let opis: string;
-    export let cena: number;
+    import type { Product, Totals } from "./+page.svelte";
+    export type Props = {
+        product: Product;
+        totals: Map<Product["id"], Totals>;
+    };
+    let { product, totals }: Props = $props();
 
-    let ilosc = 1;
+    let ilosc = $state(1);
 
     function increment() {
         ilosc += 1;
+        totals.set(product.id, total);
     }
 
     function decrement() {
-        if (ilosc > 1) ilosc -= 1;
+        if (ilosc > 1) {
+            ilosc -= 1;
+        }
+        totals.set(product.id, { total: total, count: ilosc });
     }
 
-    $: total = (cena * ilosc).toFixed(2) + "$";
-    $: ilosc = +ilosc || 1;
+    let total: number = $derived(product.price * ilosc);
+
+    $effect(() => {
+        // This effect ensures 'ilosc' is a number and defaults to 1 if it's not a valid number.
+        // The '+' prefix on 'ilosc' in the input will automatically coerce the value to a number,
+        // but this adds an extra layer of safety.
+        ilosc = +ilosc || 1;
+    });
 </script>
 
 <div>
     <table>
         <tbody>
-            <tr
-                ><td
-                    ><img src={link} />
-                    <p>{title}</p></td
-                >
-                <td><p id="opis">{opis}</p></td>
-                <td><p>{price}</p></td>
-                <td
-                    ><button onclick={increment}>+</button><br />
+            <tr>
+                <td>
+                    <img src={product.image} alt={product.title} />
+                    <p>{product.title}</p>
+                </td>
+                <td><p id="opis">{product.description}</p></td>
+                <td><p>{product.price}$</p></td>
+                <td>
+                    <button onclick={increment}>+</button><br />
                     <input type="number" min="1" bind:value={ilosc} /><br />
-                    <button onclick={decrement}>-</button></td
-                >
-                <td
-                    ><input id="total" min="1" bind:value={total} readonly />
-                </td></tr
-            >
+                    <button onclick={decrement}>-</button>
+                </td>
+                <td>
+                    <p id="total">{total}</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -116,5 +127,6 @@
         border-radius: 15px;
         width: 150px;
         text-align: center;
+        padding: 8px;
     }
 </style>

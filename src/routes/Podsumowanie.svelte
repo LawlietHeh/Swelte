@@ -1,11 +1,26 @@
 <script lang="ts">
+    import type { Product, Totals } from "./+page.svelte";
+    type Props = {
+        totals: Map<Product["id"], Totals>;
+    };
+
+    let { totals }: Props = $props();
+    function oneclick() {
+        console.log(totals);
+    }
+
+    let suma = $derived(
+        Array.from(totals.values()).reduce((acc, val) => acc + val.total, 0),
+    );
 </script>
 
 <div>
     <br />
-    <p id="podsumowanie">&nbsp;&nbsp;Podsumowanie:</p>
+    <p id="podsumowanie">&nbsp;&nbsp;Podsumowanie:<br />{suma}</p>
+    <button on:click={oneclick}>s</button>
+    <hr />
+    {totals.size}
     <br />
-    <p>&nbsp;&nbsp;&nbsp;Podsumowanie:</p>
 </div>
 
 <style>
