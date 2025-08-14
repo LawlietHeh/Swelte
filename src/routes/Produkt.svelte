@@ -10,7 +10,7 @@
 
     function increment() {
         ilosc += 1;
-        totals.set(product.id, total);
+        totals.set(product.id, { total: total, count: ilosc });
     }
 
     function decrement() {
@@ -46,7 +46,7 @@
                     <button onclick={decrement}>-</button>
                 </td>
                 <td>
-                    <p id="total">{total}</p>
+                    <p id="total">{total.toFixed(2)}</p>
                 </td>
             </tr>
         </tbody>
@@ -55,15 +55,18 @@
 
 <style>
     table {
-        background-color: rgba(255, 255, 255, 0.336);
+        background-color: rgba(255, 255, 255, 0.808);
         width: 80%;
         height: 200px;
         text-align: center;
         border-radius: 15px;
         transition: 1000ms;
+        border-style: double;
+        border-color: hotpink;
+        border-width: 5px;
     }
     table:hover {
-        background-color: rgba(255, 255, 255, 0.548);
+        background-color: rgba(255, 212, 239, 0.651);
         text-align: center;
         border-radius: 15px;
     }
@@ -122,7 +125,7 @@
         margin: 30px;
     }
     #total {
-        background-color: rgba(218, 132, 255, 0.219);
+        background-color: rgba(229, 167, 255, 0.219);
         border-style: none;
         border-radius: 15px;
         width: 150px;

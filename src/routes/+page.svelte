@@ -16,6 +16,10 @@
         total: number;
         count: number;
     };
+    export type calkowitailosc = {
+
+    }
+
 </script>
 
 <script lang="ts">
@@ -33,7 +37,6 @@
         products.forEach((product) => {
             totals.set(product.id, { total: product.price, count: 1 });
         });
-        console.log(totals);
     }
 
     //
@@ -56,12 +59,14 @@
     getData();
     /** ta zmienna przechowuje to i to */
 </script>
-
+<div id="koszyk">
+Koszyk
+</div>
 <div>
     <table>
         <tbody>
             <tr
-                ><td>Produkt<button on:click={oneclick}>s</button></td><td
+                ><td>Produkt</td><td
                     >Opis</td
                 ><td>Cena</td><td>Ilość</td><td>Wartość</td>
             </tr><tr></tr>
@@ -76,11 +81,20 @@
 
 <style>
     table {
-        background-color: rgba(255, 255, 255, 0.781);
-        width: 80%;
-        height: 100px;
+        background-color: rgba(251, 177, 224, 0.275);
         text-align: center;
         border-radius: 15px;
+        
+    }
+    td {
+                background-image: url(../lib/images/chmura.gif);
+                background-size: 200px 110px;
+                height: 300px;
+                font-family: "Pacifico", cursive;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 25px;
+                color: rgb(255, 146, 164);
     }
     input {
         width: 45%;
@@ -89,7 +103,7 @@
 
     td {
         min-width: 200px;
-        height: 100px;
+        height: 110px;
     }
     img {
         height: auto;
@@ -121,5 +135,25 @@
         border-color: rgb(87, 87, 87);
         border-style: inset;
         border-width: 2px;
+    }
+    #koszyk {
+        background-color: rgb(255, 255, 255);
+        border-radius: 15px;
+        height: 130px;
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 40px;
+        background-image: url(#);
+        background-size: 100% 130px;
+        text-align: center;
+        padding-top: 30px;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+          border-style: double;
+          border-color: hotpink;
+          border-width: 5px;
+
+  color: hotpink;
     }
 </style>

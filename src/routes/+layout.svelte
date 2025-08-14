@@ -13,6 +13,7 @@
 	<!-- <Header /> -->
 	<main>
 		{@render children()}
+		<div>s</div>
 		<!-- <Counter startingamount={3} /> -->
 		<!-- 
 		<Kartazakupowa />
@@ -33,6 +34,7 @@
 		</p>
 	</footer> -->
 	</main>
+	
 </div>
 
 <style>
@@ -76,5 +78,9 @@
 	}
 	hr {
 		width: 80.6%;
+	}
+	div {
+		background-size: 100% 10%;
+		background-image: url(#);
 	}
 </style>
