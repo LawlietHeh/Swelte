@@ -29,7 +29,7 @@
     import Podsumowanie from "./Podsumowanie.svelte";
     let totals = new Map<Product["id"], Totals>();
     let products: Product[] = $state([]);
-
+    let loading = $state(true)
     async function getData() {
         let responce = await fetch("https://fakestoreapi.com/products");
         let data = await responce.json();
@@ -38,7 +38,10 @@
             totals.set(product.id, { total: product.price, count: 1 });
         });
     }
-
+    $effect(() => {
+        loading = false;
+    }
+)
     //
     //
     // let hp = 100
@@ -61,6 +64,13 @@
 </script>
 <div id="koszyk">
 Koszyk
+{#if loading}
+    <div class="loading-screen">
+        <img src="../src/lib/images/rikka-loading.gif"/></div><br/>
+    <div class="loading-screen2">
+        <img id="loading" src="../src/lib/images/loading-ring.gif"/>
+    </div>
+{/if}
 </div>
 <div>
     <table>
@@ -155,5 +165,17 @@ Koszyk
           border-width: 5px;
 
   color: hotpink;
+    }
+    .loading-screen {
+        position: relative;
+        top: 400px;
+        left:40%
+    }
+    .loading-screen2 {
+        position: relative;
+        height: 50px;
+        width: 50px;
+        left: 470px;
+        top: 55px;
     }
 </style>

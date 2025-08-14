@@ -13,7 +13,6 @@
 	<!-- <Header /> -->
 	<main>
 		{@render children()}
-		<div>s</div>
 		<!-- <Counter startingamount={3} /> -->
 		<!-- 
 		<Kartazakupowa />
